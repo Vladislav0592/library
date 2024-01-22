@@ -1,0 +1,5 @@
+Author:
+  path: /books
+  controller: App\Controller\BooksController::index
+
+

@@ -1,0 +1,43 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Автор{% endblock %}
+
+{% block body %}
+    <div class="container">
+    <h2>Автор</h2>
+        <table class="table">
+            <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ author.id }}</td>
+            </tr>
+            <tr>
+                <th>Имя</th>
+                <td>{{ author.name }}</td>
+            </tr>
+            <tr>
+                <th>Отчество (если есть)</th>
+                <td>{{ author.secondName }}</td>
+            </tr>
+            <tr>
+                <th>Фамилия</th>
+                <td>{{ author.surname }}</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="buttons">
+            <a href="{{ path('app_author_edit', {'id': author.id}) }}"><button class="btn btn-info"> Внести изменения</button></a>
+            <form method="post" action="{{ path('app_author_delete', {'id': author.id}) }}" onsubmit="return confirm('Вы уверены?');">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ author.id) }}">
+                <button class="btn btn-danger">Удалить</button>
+            </form>
+        </div>
+
+<br>
+    <a href="{{ path('app_author_index') }}"><button class="btn btn-success"> К списку авторов</button></a>
+
+
+
+
+    </div>
+{% endblock %}

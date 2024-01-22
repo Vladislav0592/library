@@ -1,0 +1,14 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}New Author{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h2>Добавить автора</h2>
+    {{ include('author/_form.html.twig') }}
+
+    <a href="{{ path('app_author_index') }}"><button class=" btn btn-success">К списку авторов</button></a>
+    <a href="{{ path('app_books_index') }}"><button class=" btn btn-info">К списку публикаций</button></a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Edit Author{% endblock %}
+
+{% block body %}
+    <div class="container">
+    <h2>Обновление данных об авторе</h2>
+        {{ include('author/_form.html.twig', {'button_label': 'Сохранить'}) }}
+        <div class="buttons">
+            <a href="{{ path('app_author_index') }}">
+                <button class="btn btn-info">К списку авторов</button>
+            </a>
+            <form method="post" action="{{ path('app_author_delete', {'id': author.id}) }}" onsubmit="return confirm('Вы уверены?');">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ author.id) }}">
+                <button class="btn btn-danger">Удалить</button>
+            </form>
+        </div>
+
+    </div>
+
+
+
+{% endblock %}

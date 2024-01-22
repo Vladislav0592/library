@@ -1,0 +1,21 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Edit Books{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h2>Внесение изменений</h2>
+        <br>
+        {{ include('books/_form.html.twig', {'button_label': 'Сохранить'}) }}
+        <div class="buttons">
+            <a href="{{ path('app_books_index') }}">
+                <button class="btn btn-info"> К публикациям</button>
+            </a>
+            <form method="post" action="{{ path('app_books_delete', {'id': book.id}) }}"
+                  onsubmit="return confirm('Вы уверены?');">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ book.id) }}">
+                <button class="btn btn-danger">Удалить</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

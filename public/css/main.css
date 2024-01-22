@@ -1,0 +1,41 @@
+body{
+    background-color: #f2f1ed;
+}
+.create-book{
+    margin-right: auto;
+    margin-left: auto;
+    height: auto;
+    width: 80%;
+    padding: 5%;
+}
+.div-form{
+
+}
+.border{
+    height: 25%;
+    width: 25%;
+    border: solid #0a6ed1 1px;
+    float: left;
+    cursor: default;
+    padding: 10px;
+    display: flex;
+    margin: 0 100px 100px 0;
+}
+.books{
+    float: left;
+    width: 15%;
+    height: 15%;
+    padding: 5%;
+    flex-grow: 1;
+    text-align:center;
+
+}
+.foot {
+    height: 80px;
+    width: 100%;
+    margin-top: 12%;
+
+}
+.buttons{
+    display: flex;
+}

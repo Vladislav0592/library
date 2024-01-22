@@ -1,0 +1,66 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Books{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h2>Публикация</h2>
+        <br>
+        <table class="table">
+            <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ book.id }}</td>
+            </tr>
+            <tr>
+                <th>Автор</th>
+
+                <td>{{ book.author.name }}  {{ book.author.surname }}
+                    <br>
+                    {% if  book.author2 %}
+                        {{ book.author2.name }}   {{ book.author2.surname }}
+                    {% endif %}
+                    {% if  book.author3 %}
+                        {{ book.author3.name }}   {{ book.author3.surname }}
+                    {% endif %}</td>
+
+            </tr>
+            <tr>
+                <th>Имя</th>
+                <td>{{ book.name }}</td>
+            </tr>
+            <tr>
+                <th>Год публикации</th>
+                <td>{{ book.yearOfPublication }}</td>
+            </tr>
+            <tr>
+                <th>Издание</th>
+                <td>{{ book.edition }}</td>
+            </tr>
+            <tr>
+                <th>ISBN</th>
+                <td>{{ book.ISBN }}</td>
+            </tr>
+            <tr>
+                <th>количество страниц</th>
+                <td>{{ book.numberOfPages }}</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="buttons">
+            <a href="{{ path('app_books_index') }}">
+                <button class="btn btn-success">К списку публикаций</button>
+            </a>
+
+            <a href="{{ path('app_books_edit', {'id': book.id}) }}">
+                <button class="btn btn-primary">Внести изменения</button>
+            </a>
+
+            <form method="post" action="{{ path('app_books_delete', {'id': book.id}) }}"
+                  onsubmit="return confirm('Are you sure you want to delete this item?');">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ book.id) }}">
+                <button class="btn btn-danger">Удалить</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

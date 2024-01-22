@@ -1,0 +1,49 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Author index{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h2> Список авторов</h2>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Фамилия</th>
+                <th>Имя</th>
+                <th>Отчество (если есть)</th>
+                <th>Действие</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for author in authors %}
+            <tr>
+                <td>{{ author.surname }}</td>
+                <td>{{ author.name }}</td>
+                <td>{{ author.secondName }}</td>
+                <td>
+                    <div class="buttons">
+                        <a href="{{ path('app_author_show', {'id': author.id}) }}"><button class="btn btn-light">Подробнее</button></a>
+                        <a href="{{ path('app_author_edit', {'id': author.id}) }}"><button class="btn btn-light">Обновить</button></a>
+                        <form method="post" action="{{ path('app_author_delete', {'id': author.id}) }}" onsubmit="return confirm('Вы уверены?');">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ author.id) }}">
+                            <button class="btn btn-danger">Удалить</button>
+                        </form>
+                    </div>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Запись не найдена</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+    <a href="{{ path('app_author_new') }}"><button class=" btn btn-success">Добавить автора</button></a>
+    <a href="{{ path('app_books_index') }}"><button class=" btn btn-info">К списку публикаций</button></a>
+    <a href="{{ path('app_books_new') }}"><button class=" btn btn-primary">Добавить публикацию</button></a>
+</div>
+{% endblock %}
